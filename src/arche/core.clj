@@ -18,7 +18,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (ns arche.core
-  (:gen-class)
   (:require [compojure.route :as route]
             [compojure.core :refer [defroutes GET]]
             [compojure.handler :refer [api]]
@@ -40,8 +39,6 @@
   (GET entry/route [] (entry/entry-points))
   (route/not-found "Not Found"))
 
-(defn handler [] (api app-routes))
-
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
-    (jetty/run-jetty handler {:port port :join? false})))
+    (jetty/run-jetty (api #'app-routes) {:port port :join? false})))
