@@ -62,6 +62,7 @@
   :min-lein-version "2.0.0"
   :hooks [environ.leiningen.hooks]
   :ring {:handler arche.core/handler}
+  :uberjar-name "arche-standalone.jar"
   :test-paths ["spec"]
   :cucumber-feature-paths ["features/"]
   :target-path "target/%s"
