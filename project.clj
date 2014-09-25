@@ -59,7 +59,6 @@
             [lein-pprint "1.1.1"]]
   :clj-sql-up {:database {:subprotocol "mysql"}
                :deps [[mysql/mysql-connector-java "5.1.25"]]}
-  :main ^:skip-aot arche.core
   :ring {:handler arche.core/handler}
   :test-paths ["spec"]
   :cucumber-feature-paths ["features/"]
