@@ -18,8 +18,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (ns arche.core
-  (:require [ring.middleware.params :refer [wrap-params]]
-            [compojure.route :as route]
+  (:gen-class)
+  (:require [compojure.route :as route]
             [compojure.core :refer [defroutes GET]]
             [compojure.handler :refer [api]]
             [compojure.route :as route]
@@ -44,4 +44,4 @@
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
-    (jetty/run-jetty (api #'app-routes) {:port port :join? false})))
+    (jetty/run-jetty handler {:port port :join? false})))
