@@ -40,6 +40,7 @@
   (GET entry/route [] (entry/entry-points))
   (route/not-found "Not Found"))
 
+(defn handler [] (api app-routes))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
