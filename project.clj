@@ -37,7 +37,7 @@
                  [clojurewerkz/urly "1.0.0"]
                  [ring-mock "0.1.5"]
                  [pandect "0.3.4"]]
-  :profiles {:uberjar {:aot :all}
+  :profiles {
              :production {:env {:production true}}
              :spec {:env {:base-uri "http://example.org"}
                     :dependencies [[speclj "3.1.0"]]}
@@ -60,12 +60,7 @@
   :clj-sql-up {:database {:subprotocol "mysql"}
                :deps [[mysql/mysql-connector-java "5.1.25"]]}
   :min-lein-version "2.0.0"
-  :ring {:handler arche.core/handler}
   :uberjar-name "arche-standalone.jar"
-  :main ^:skip-aot arche.core
   :test-paths ["spec"]
   :cucumber-feature-paths ["features/"]
-  :target-path "target/%s"
-  :pom-addition [:developers [:developer {:id "neomantic"}
-                              [:name "Chad Albers"]
-                              [:url "http://www.neomantic.com"]]])
+  :target-path "target/%s")
