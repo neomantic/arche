@@ -60,7 +60,6 @@
   :clj-sql-up {:database {:subprotocol "mysql"}
                :deps [[mysql/mysql-connector-java "5.1.25"]]}
   :min-lein-version "2.0.0"
-  :hooks [environ.leiningen.hooks]
   :ring {:handler arche.core/handler}
   :uberjar-name "arche-standalone.jar"
   :test-paths ["spec"]
