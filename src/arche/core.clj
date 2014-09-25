@@ -18,9 +18,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (ns arche.core
-  (:use compojure.core)
   (:require [ring.middleware.params :refer [wrap-params]]
             [compojure.route :as route]
+            [compojure.core :refer [defroutes GET]]
+            [compojure.handler :refer [api]]
             [arche.resources.discoverable-resources :only (names discoverable-resource-entity) :as discover]
             [arche.resources.entry-points :only (entry-points route) :as entry]
             [clojure.string :as str]
@@ -38,10 +39,7 @@
   (GET entry/route [] (entry/entry-points))
   (route/not-found "Not Found"))
 
-(def handler
-  (-> app-routes
-      wrap-params))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
-    (jetty/run-jetty (site #'app-routes) {:port port :join? false})))
+    (jetty/run-jetty (api #'app-routes) {:port port :join? false})))
