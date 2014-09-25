@@ -60,6 +60,7 @@
   :clj-sql-up {:database {:subprotocol "mysql"}
                :deps [[mysql/mysql-connector-java "5.1.25"]]}
   :min-lein-version "2.0.0"
+  :hooks [environ.leiningen.hooks]
   :ring {:handler arche.core/handler}
   :test-paths ["spec"]
   :cucumber-feature-paths ["features/"]
