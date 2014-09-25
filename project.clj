@@ -37,7 +37,7 @@
                  [clojurewerkz/urly "1.0.0"]
                  [ring-mock "0.1.5"]
                  [pandect "0.3.4"]]
-  :profiles {
+  :profiles {:uberjar {:aot :all}
              :production {:env {:production true}}
              :spec {:env {:base-uri "http://example.org"}
                     :dependencies [[speclj "3.1.0"]]}
