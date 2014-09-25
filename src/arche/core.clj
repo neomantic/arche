@@ -26,6 +26,8 @@
             [clojure.string :as str]
             [arche.app-state :as app]
             [arche.resources.profiles :as profile]
+            [ring.adapter.jetty :as jetty]
+            [environ.core :refer [env]]
             [inflections.core :refer :all :as inflect]))
 
 (defroutes app-routes
@@ -39,3 +41,7 @@
 (def handler
   (-> app-routes
       wrap-params))
+
+(defn -main [& [port]]
+  (let [port (Integer. (or port (env :port) 5000))]
+    (jetty/run-jetty (site #'app-routes) {:port port :join? false})))
