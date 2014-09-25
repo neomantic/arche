@@ -22,6 +22,7 @@
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET]]
             [compojure.handler :refer [api]]
+            [compojure.route :as route]
             [arche.resources.discoverable-resources :only (names discoverable-resource-entity) :as discover]
             [arche.resources.entry-points :only (entry-points route) :as entry]
             [clojure.string :as str]
