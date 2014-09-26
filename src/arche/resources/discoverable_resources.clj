@@ -31,6 +31,7 @@
             [arche.http :as http-helper]
             [pandect.core :refer :all :as digest]
             [inflections.core :refer :all :as inflect]
+            [environ.core :refer [env]]
             [arche.resources.profiles :as profile]))
 
 (def ^{:private true} base-name "discoverable_resources")
@@ -45,7 +46,10 @@
   (digest/md5 (format "%s/%d-%d" (name entity-type) (:id record)
                       (:updated_at record))))
 
-(defdb db records/dbspec)
+(defdb db (mysql {:user (env :database-user)
+                  :password (env :database-password)
+                  :host (env :database-host)
+                  :db (env :database-name)}))
 
 (defentity discoverable-resources
   (pk :id)
